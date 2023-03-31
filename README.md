@@ -23,8 +23,8 @@ When you first run up the program, it will show a list of instructions:
 ```
 
 ## Language Used
+###**Python**
 ```
-### Python
 pyautogui
 keyboard
 threading

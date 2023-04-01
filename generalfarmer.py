@@ -34,7 +34,8 @@ def listen_for_exit():
 def main():
     print("Random = 25252345")
     print("Lightcaster = 423523232, delay = 0.65")
-    print("Archpaladin = 42352235 delay = 1")
+    print("Archpaladin = 42352235, delay = 1")
+    print("ScarletSorceress = 523532534, delay = 0.65")
     combo = str(input("Enter combo: "))
     delay = float(input("Enter delay: "))
     clicker = str(input("Do you need auto click(y/n? ")).lower()
@@ -72,9 +73,10 @@ def main():
         elif keyboard.is_pressed('ctrl+q'):
             # If the user pressed ctrl+q, exit the program
             exit()
-        key_pressed(combo, delay)
-        if clicker == "y":
-            mouse_movement(initial_x, initial_y, next_x, next_y)
+        else:
+            key_pressed(combo, delay)
+            if clicker == "y":
+                mouse_movement(initial_x, initial_y, next_x, next_y)
 
 
 if __name__ == "__main__":

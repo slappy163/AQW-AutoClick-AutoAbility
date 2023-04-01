@@ -7,7 +7,6 @@ import threading
 def key_pressed(combo=str, delay=float):
     for i in range(len(combo)):
         pyautogui.write('1')
-        time.sleep(delay)
         pyautogui.write(combo[i])
         time.sleep(delay)
 

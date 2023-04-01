@@ -73,10 +73,9 @@ def main():
         elif keyboard.is_pressed('ctrl+q'):
             # If the user pressed ctrl+q, exit the program
             exit()
-        else:
-            key_pressed(combo, delay)
-            if clicker == "y":
-                mouse_movement(initial_x, initial_y, next_x, next_y)
+        key_pressed(combo, delay)
+        if clicker == "y":
+            mouse_movement(initial_x, initial_y, next_x, next_y)
 
 
 if __name__ == "__main__":

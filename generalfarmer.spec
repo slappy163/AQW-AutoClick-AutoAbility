@@ -8,7 +8,7 @@ a = Analysis(
     ['generalfarmer.py'],
     pathex=[],
     binaries=[],
-    datas=[],
+    datas=[('quickstart.txt', '.'), ('class_combo_delay.txt', '.'), ('instructions.txt', '.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},

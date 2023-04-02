@@ -2,6 +2,7 @@ import pyautogui
 import time
 import keyboard
 import threading
+import os
 
 
 def key_pressed(combo=str, delay=float):
@@ -9,6 +10,14 @@ def key_pressed(combo=str, delay=float):
         pyautogui.write('1')
         pyautogui.write(combo[i])
         time.sleep(delay)
+
+
+def open_instructions(filename=str):
+    text = []
+    with open(filename, 'r') as file:
+        for line in file:
+            text.append(line.strip())
+    return text
 
 
 def mouse_movement(x1=int, y1=int, x2=int, y2=int):
@@ -31,21 +40,30 @@ def listen_for_exit():
 
 
 def main():
-    print("Random = 25252345")
-    print("Lightcaster = 423523232, delay = 0.65")
-    print("Archpaladin = 42352235, delay = 1")
-    print("ScarletSorceress = 523532534, delay = 0.65")
+    qsfile = open_instructions("quickstart.txt")
+    classes = open_instructions("class_combo_delay.txt")
+    instructionsfile = open_instructions("instructions.txt")
+    request = str()
+
+    while (True):
+        for i in qsfile:
+            print(i)
+        request = str(input("Input: ")).lower()
+        if request == "start":
+            break
+        elif request == "list":
+            os.system('cls')
+            for i in classes:
+                print(i)
+        else:
+            os.system('cls')
+            print(f"Please enter a valid request 'start' or 'list'\n\n")
+
     combo = str(input("Enter combo: "))
     delay = float(input("Enter delay: "))
     clicker = str(input("Do you need auto click(y/n? ")).lower()
-    print("1. Press <ctrl+`> to start the program")
-    print("---if you said no to auto click, skip to step 4")
-    print("2. Place cursor on quest then press <ctrl+1>")
-    print("3. Place cursor on turn-in then press <ctrl+2>")
-    print("4. Sit back, relax, and chill")
-    print("5a. Press <ctrl+alt+q> to pause")
-    print("     5b. Press <ctrl+`> to resume")
-    print("6. Press <ctrl+q> to quit after unpausing")
+    for i in instructionsfile:
+        print(i)
 
     keyboard.wait('ctrl+`')
 
@@ -61,7 +79,7 @@ def main():
     threading.Thread(target=listen_for_exit).start()  # start the thread
     running = True
     while running:
-        if keyboard.is_pressed('ctrl+alt+q'):
+        if keyboard.is_pressed('ctrl+shift+q'):
             # If the user pressed ctrl+`, break the loop and wait for the hotkey again
             print("Paused...")
             while True:

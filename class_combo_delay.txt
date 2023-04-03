@@ -1,7 +1,0 @@
-Lightcaster: 423523232, delay = 0.65
-
-Archpaladin: 42352235, delay = 1
-
-ScarletSorceress: 523532534, delay = 0.65
-
-CaV: 6452324325, delay = 0.75

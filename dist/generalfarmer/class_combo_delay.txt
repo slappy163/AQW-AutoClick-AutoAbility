@@ -8,4 +8,4 @@ ScarletSorceress: 523532534, delay = 0.65
 
 CaV: 6452324325, delay = 0.75
 
-DoT: 43254323, delay = 0.75
+DoT: 23543, delay = 0.75

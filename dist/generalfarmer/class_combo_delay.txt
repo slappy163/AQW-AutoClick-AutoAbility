@@ -8,6 +8,6 @@ ScarletSorceress: 523532534, delay = 0.65
 
 CaV: 6452324325, delay = 0.75
 
-DoT: solo: 23543, farm: 54323, delay = 0.75
+DoT: solo: 23543, farm: 534323, delay = 0.8
 
 BlazeBinder: farm: 2354, delay = 0.1

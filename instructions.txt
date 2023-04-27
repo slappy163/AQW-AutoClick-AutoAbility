@@ -1,8 +1,10 @@
+--If you said 'y' to auto turn-in--
+1. Place cursor on quest then press <ctrl+1>
+2. Place cursor on turn-in then press <ctrl+2>
+3. Continue to the next part
+--OTHERWISE--
 1. Press <ctrl+`> to start the program
----if you said no to auto click, skip to step 4
-2. Place cursor on quest then press <ctrl+1
-3. Place cursor on turn-in then press <ctrl+2
-4. Sit back, relax, and chill
-5a. Press <ctrl+shift+q> to pause
--> 5b. Press <ctrl+`> to resume
-6. Press <ctrl+q> to quit after unpausing
+2. Sit back, relax, and chill
+3a. Press <ctrl+shift+q> to pause
+-> 3b. Press <ctrl+`> to resume
+4. Press <ctrl+q> to quit after unpausing

@@ -23,6 +23,13 @@ def key_combo(combo = str, delay = float):
         pyautogui.write(i)
         time.sleep(delay)
 
+def consumable(delay = float):
+    '''
+    Presses the consumable
+    '''
+    pyautogui.write('6')
+    time.sleep(10)
+
 def mouse_position(x1 = int, y1 = int, x2 = int, y2 = int):
     '''
     Controls the mouse position:
@@ -34,6 +41,26 @@ def mouse_position(x1 = int, y1 = int, x2 = int, y2 = int):
     time.sleep(0.5)
     pyautogui.moveTo(x2, y2)
     pyautogui.click()
+
+def exit():
+    global running
+    keyboard.wait('ctrl+q')
+    running = False
+    while True:
+        if running:
+            time.sleep(0.5)
+        else:
+            break
+
+def pause():
+    global is_paused
+    keyboard.wait('ctrl+shift+q')
+    is_paused = True
+    while True:
+        if not is_paused:
+            time.sleep(0.5)
+        else:
+            break
 
 def main():
     # Open the files
@@ -66,6 +93,21 @@ def main():
         initial_x, initial_y = pyautogui.position()
         keyboard.wait('ctrl+2')
         next_x, next_y = pyautogui.position()
+
+    # Will continue with the program once it recieves input
+    keyboard.wait('ctrl+`')
+
+    # Main Loop
+    global running
+    threading.Thread(target=exit).start()  # start the thread
+    running = True
+
+    global is_paused
+    threading.Thread(target=pause).start()
+    is_paused = False
+    while running:
+        
+
 
 
 if __name__ == "__main__":

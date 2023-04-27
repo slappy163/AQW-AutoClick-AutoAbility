@@ -4,6 +4,7 @@ import keyboard
 import threading
 import os
 
+
 def open_file(filename=str):
     '''
     Open the files
@@ -14,7 +15,8 @@ def open_file(filename=str):
             text.append(line.strip())
     return text
 
-def key_combo(combo = str, delay = float):
+
+def key_combo(combo=str, delay=float):
     '''
     Presses the Combo
     '''
@@ -23,14 +25,16 @@ def key_combo(combo = str, delay = float):
         pyautogui.write(i)
         time.sleep(delay)
 
-def consumable(delay = float):
+
+def consumable():
     '''
     Presses the consumable
     '''
     pyautogui.write('6')
     time.sleep(10)
 
-def mouse_position(x1 = int, y1 = int, x2 = int, y2 = int):
+
+def mouse_position(x1=int, y1=int, x2=int, y2=int):
     '''
     Controls the mouse position:
     P1: The quest
@@ -42,6 +46,7 @@ def mouse_position(x1 = int, y1 = int, x2 = int, y2 = int):
     pyautogui.moveTo(x2, y2)
     pyautogui.click()
 
+
 def exit():
     global running
     keyboard.wait('ctrl+q')
@@ -52,6 +57,7 @@ def exit():
         else:
             break
 
+
 def pause():
     global is_paused
     keyboard.wait('ctrl+shift+q')
@@ -61,6 +67,7 @@ def pause():
             time.sleep(0.5)
         else:
             break
+
 
 def main():
     # Open the files
@@ -105,9 +112,24 @@ def main():
     global is_paused
     threading.Thread(target=pause).start()
     is_paused = False
-    while running:
-        
 
+    combo = threading.Thread(target=key_combo, args=[combo, delay]).start()
+    mouse = threading.Thread(target=mouse_position, args=[
+                             initial_x, initial_y, next_x, next_y])
+    consumable = threading.Thread(target=consumable).start()
+
+    if clicker == "y":
+        mouse.start()
+
+    while running:
+        if is_paused:
+            print("Paused...")
+            keyboard.wait('ctrl+`')
+            print('Resuming...')
+
+    combo.join()
+    mouse.join()
+    consumable.join()
 
 
 if __name__ == "__main__":

@@ -20,18 +20,26 @@ def key_combo(combo=str, delay=float):
     '''
     Presses the Combo
     '''
-    for i in combo:
-        pyautogui.write('1')
-        pyautogui.write(i)
-        time.sleep(delay)
+    global running
+    global is_paused
+    while True:
+        if running and not is_paused:
+            for i in combo:
+                pyautogui.write('1')
+                pyautogui.write(i)
+                time.sleep(delay)
 
 
-def consumable():
+def key_consumable():
     '''
     Presses the consumable
     '''
-    pyautogui.write('6')
-    time.sleep(10)
+    global running
+    global is_paused
+    while True:
+        if running and not is_paused:
+            pyautogui.write('6')
+            time.sleep(1)
 
 
 def mouse_position(x1=int, y1=int, x2=int, y2=int):
@@ -40,20 +48,26 @@ def mouse_position(x1=int, y1=int, x2=int, y2=int):
     P1: The quest
     P2: The turn-in button
     '''
-    pyautogui.moveTo(x1, y1)
-    pyautogui.click()
-    time.sleep(0.5)
-    pyautogui.moveTo(x2, y2)
-    pyautogui.click()
+    global running
+    global is_paused
+    while True:
+        if running and not is_paused:
+            pyautogui.moveTo(x1, y1)
+            pyautogui.click()
+            time.sleep(0.5)
+            pyautogui.moveTo(x2, y2)
+            pyautogui.click()
 
 
 def exit():
     global running
+    print('Waiting for exit hotkey')
     keyboard.wait('ctrl+q')
+    print("Exit hotkey pressed")
     running = False
     while True:
         if running:
-            time.sleep(0.5)
+            time.sleep(0.05)
         else:
             break
 
@@ -61,12 +75,11 @@ def exit():
 def pause():
     global is_paused
     keyboard.wait('ctrl+shift+q')
+    print("Pausing...")
     is_paused = True
-    while True:
-        if not is_paused:
-            time.sleep(0.5)
-        else:
-            break
+    keyboard.wait('ctrl+`')
+    is_paused = False
+    print('Resuming...')
 
 
 def main():
@@ -106,30 +119,48 @@ def main():
 
     # Main Loop
     global running
-    threading.Thread(target=exit).start()  # start the thread
+    exit_thread = threading.Thread(target=exit)
+    exit_thread.start()
+
     running = True
 
     global is_paused
-    threading.Thread(target=pause).start()
+    pause_thread = threading.Thread(target=pause)
+    pause_thread.start()
+
     is_paused = False
 
-    combo = threading.Thread(target=key_combo, args=[combo, delay]).start()
-    mouse = threading.Thread(target=mouse_position, args=[
-                             initial_x, initial_y, next_x, next_y])
-    consumable = threading.Thread(target=consumable).start()
+    # Thread for the combo and consumable
+    combo_thread = threading.Thread(target=key_combo, args=[combo, delay])
+    consumable_thread = threading.Thread(target=key_consumable)
+    combo_thread.start()
+    consumable_thread.start()
 
+    # Thread for the mouse
     if clicker == "y":
-        mouse.start()
+        mouse_thread = threading.Thread(target=mouse_position, args=[
+                                        initial_x, initial_y, next_x, next_y])
+        mouse_thread.start()
+
+    # while running:
+    #    if is_paused:
+    #        print("Paused...")
+    #        keyboard.wait('ctrl+`')
 
     while running:
-        if is_paused:
-            print("Paused...")
-            keyboard.wait('ctrl+`')
-            print('Resuming...')
+        pass
+    else:
+        print("exiting")
+        exit()
 
-    combo.join()
-    mouse.join()
-    consumable.join()
+    combo_thread.join()
+    consumable_thread.join()
+
+    if clicker == "y":
+        mouse_thread.join()
+
+    exit_thread.join()
+    pause_thread.join()
 
 
 if __name__ == "__main__":

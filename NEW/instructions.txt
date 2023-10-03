@@ -1,0 +1,10 @@
+--If you said 'y' to auto turn-in--
+1. Place cursor on quest then press <ctrl+1>
+2. Place cursor on turn-in then press <ctrl+2>
+3. Continue to the next part
+--OTHERWISE--
+1. Press <ctrl+`> to start the program
+2. Sit back, relax, and chill
+3a. Press <ctrl+shift+q> to pause
+-> 3b. Press <ctrl+`> to resume
+4. Press <ctrl+q> to quit after unpausing

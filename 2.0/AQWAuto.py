@@ -142,11 +142,6 @@ def main():
                                         initial_x, initial_y, next_x, next_y])
         mouse_thread.start()
 
-    # while running:
-    #    if is_paused:
-    #        print("Paused...")
-    #        keyboard.wait('ctrl+`')
-
     while running:
         pass
     else:

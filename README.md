@@ -24,6 +24,9 @@ When you first run up the program, it will show a list of instructions:
 **List** will list input for the classes I've used
 **Start** starts the program
 ```
+![image](https://github.com/slappy163/AQW-AutoClick-AutoAbility/assets/105318087/7c60eadd-cd43-4c76-b30f-5bba0106edc4)
+![image](https://github.com/slappy163/AQW-AutoClick-AutoAbility/assets/105318087/df590f74-e5c9-4ad7-86a9-6803b46ad190)
+![image](https://github.com/slappy163/AQW-AutoClick-AutoAbility/assets/105318087/3b4d5e56-c42e-4205-a646-59f690403908)
 
 ## How to download
 
